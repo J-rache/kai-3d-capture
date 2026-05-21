@@ -1,0 +1,9 @@
+node_modules/
+app/vendor/
+dist/
+out/
+.kai-3d-capture/
+coverage/
+*.log
+*.tmp
+Thumbs.db

@@ -1,0 +1,80 @@
+{
+  "name": "kai-3d-capture",
+  "version": "0.1.0",
+  "description": "Common-camera 3D capture for Kai CAD, standalone modeling, and prototype mesh export.",
+  "type": "module",
+  "main": "electron/main.mjs",
+  "private": false,
+  "license": "MIT",
+  "author": "Jae Nowell",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/J-rache/kai-3d-capture.git"
+  },
+  "bin": {
+    "kai-3d-capture": "./src/cli.mjs"
+  },
+  "scripts": {
+    "prepare:vendor": "node scripts/prepare-vendor.mjs",
+    "start": "npm run prepare:vendor && electron .",
+    "api": "node src/server/kai-capture-server.mjs",
+    "demo": "node src/cli.mjs demo",
+    "check": "node scripts/check-syntax.mjs",
+    "test": "node --test",
+    "smoke": "node scripts/smoke.mjs",
+    "ui-smoke": "node scripts/ui-smoke.mjs",
+    "verify": "npm run prepare:vendor && npm run check && npm test && npm run smoke && npm run ui-smoke",
+    "build:installer": "npm run verify && electron-builder --win nsis --publish never --config.win.signAndEditExecutable=false",
+    "build:portable": "npm run verify && electron-builder --win portable --publish never --config.win.signAndEditExecutable=false",
+    "stop": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/Stop-Kai3DCaptureApi.ps1"
+  },
+  "dependencies": {
+    "three": "^0.184.0"
+  },
+  "devDependencies": {
+    "electron": "^42.2.0",
+    "electron-builder": "^26.8.1",
+    "playwright": "^1.60.0"
+  },
+  "build": {
+    "appId": "com.jaenowell.kai3dcapture",
+    "productName": "Kai 3D Capture",
+    "directories": {
+      "output": "dist/installer"
+    },
+    "files": [
+      "app/**/*",
+      "electron/**/*",
+      "src/**/*",
+      "integration/**/*",
+      "LICENSE",
+      "README.md",
+      "THIRD_PARTY_NOTICES.md",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Kai 3D Capture"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "J-rache",
+        "repo": "kai-3d-capture"
+      }
+    ]
+  },
+  "engines": {
+    "node": ">=20.11"
+  }
+}

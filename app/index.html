@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' file:; script-src 'self' file:; style-src 'self'; img-src 'self' blob: data: file:; media-src 'self' blob: file:; connect-src http://127.0.0.1:*;"
+    />
+    <title>Kai 3D Capture</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <h1>Kai 3D Capture</h1>
+          <p id="statusText">Import a video or still image set.</p>
+        </div>
+        <div class="top-actions">
+          <button id="demoButton" title="Build sample capture">Demo</button>
+          <button id="buildButton" title="Build mesh">Build</button>
+          <button id="exportButton" title="Export PLY OBJ STL" disabled>Export</button>
+        </div>
+      </header>
+
+      <section class="control-band">
+        <label class="file-drop">
+          <input id="mediaInput" type="file" accept="image/*,video/*" multiple />
+          <span>Choose video or images</span>
+        </label>
+        <label>
+          Mode
+          <select id="modeInput">
+            <option value="turntable">Turntable shell</option>
+            <option value="relief">Relief mesh</option>
+          </select>
+        </label>
+        <label>
+          Known axis
+          <select id="axisInput">
+            <option value="height">Height</option>
+            <option value="width">Width</option>
+            <option value="depth">Depth</option>
+          </select>
+        </label>
+        <label>
+          Known mm
+          <input id="mmInput" type="number" min="1" value="120" />
+        </label>
+        <label>
+          Frames
+          <input id="frameCountInput" type="number" min="1" max="96" value="24" />
+        </label>
+        <label>
+          Grid
+          <input id="gridInput" type="number" min="16" max="96" value="56" />
+        </label>
+        <label>
+          Depth mm
+          <input id="depthInput" type="number" min="1" max="500" value="28" />
+        </label>
+      </section>
+
+      <section class="workspace">
+        <div class="viewport-panel">
+          <div id="viewer"></div>
+          <div class="viewport-footer">
+            <span id="meshStats">No mesh built.</span>
+            <span id="truthBadge">Common-camera prototype mesh</span>
+          </div>
+        </div>
+
+        <aside class="side-panel">
+          <section>
+            <h2>Frames</h2>
+            <div id="frameStrip" class="frame-strip"></div>
+          </section>
+          <section>
+            <h2>Capture Notes</h2>
+            <ul class="notes">
+              <li>Use a known measurement for scale.</li>
+              <li>Use the mesh as Kai CAD reference geometry.</li>
+              <li>Clean or rebuild parts before precision printing.</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Exports</h2>
+            <div id="exportList" class="export-list"></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+    <script type="module" src="./renderer.mjs"></script>
+  </body>
+</html>

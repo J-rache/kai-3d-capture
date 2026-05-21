@@ -6,6 +6,13 @@ Task:
 
 - Build an owned common-camera 3D capture system with two finishes: Kai Browser integration and standalone Windows app with installer.
 
+Repo truth:
+
+- Local repo: `C:\Users\Jae\Desktop\kai-3d-capture`
+- GitHub public: `https://github.com/J-rache/kai-3d-capture`
+- GitLab public: `https://gitlab.com/jaenowell/kai-3d-capture`
+- GitHub release: `https://github.com/J-rache/kai-3d-capture/releases/tag/v0.1.0`
+
 Implemented:
 
 - Shared mesh engine for relief and turntable-shell reconstruction from sampled image/video frames.
@@ -42,4 +49,3 @@ Truth limits:
 - v0.1 is common-camera prototype capture, not metrology-grade scanning.
 - The API worker is running on `http://127.0.0.1:3947/` at handoff time.
 - Optional COLMAP/Meshroom/NeRF/CAD-solid adapters are documented as next engine layer, not bundled in this build.
-

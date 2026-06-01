@@ -4,6 +4,11 @@ Kai 3D Capture turns ordinary video frames or still images into scaled 3D workin
 
 This is not a metrology scanner replacement. A common camera cannot honestly match a blue-laser scanner that claims 0.015 mm accuracy. This repo is for common-camera capture: visual meshes, rough dimensions, known-scale references, CAD reconstruction assistance, and exportable model artifacts.
 
+## Screenshot
+
+![Kai 3D Capture dashboard](docs/screenshots/kai-3d-capture-dashboard.png)
+
+
 ## Two Finishes
 
 1. **Kai Browser integration finish**
